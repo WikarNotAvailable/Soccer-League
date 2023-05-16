@@ -32,7 +32,7 @@ export const Clubs = () => {
     ) {
       const res = await axios.post(
         "http://localhost:8080/take/Clubs",
-        JSON.stringify(formState),
+        formState,
         {
           headers: {
             Accept: "/",
