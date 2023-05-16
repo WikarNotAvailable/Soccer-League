@@ -34,7 +34,7 @@ export const Clubs = () => {
       const res = await axios({
         method: "post",
         url: "http://localhost:8080/take/Clubs",
-        data: JSON.stringify(formState),
+        body: JSON.stringify(formState),
         headers: {
           Accept: "/",
           "Accept-Encoding": "gzip,deflate,br",
