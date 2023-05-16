@@ -51,7 +51,7 @@ export const Clubs = () => {
         <Text fontSize="24px" fontWeight="600" mb="16px">
           Clubs list
         </Text>
-        {clubs?.map((club: Club) => {
+        {clubs?.map((club: Club, index: number) => {
           return (
             <Flex
               p="8px"
@@ -59,6 +59,7 @@ export const Clubs = () => {
               w="100%"
               justify="space-between"
               align="center"
+              key={index}
             >
               <Text fontSize="14px" fontWeight="600">
                 {club.name}
