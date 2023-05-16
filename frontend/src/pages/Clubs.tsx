@@ -15,8 +15,7 @@ export const Clubs = () => {
 
   const getClubs = async () => {
     const res = await axios.get("http://localhost:8080/take/Clubs");
-    console.log(res.data);
-    //setClubs(res.data);
+    setClubs(JSON.parse(res.data.clubs));
   };
 
   useEffect(() => {
