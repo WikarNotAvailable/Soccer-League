@@ -32,7 +32,13 @@ export const Clubs = () => {
     ) {
       const res = await axios.post(
         "http://localhost:8080/take/Clubs",
-        JSON.stringify(formState)
+        JSON.stringify(formState),
+        {
+          headers: {
+            Accept: "appliaction/json",
+            "Content-Type": "application/json"
+          }
+        }
       );
       console.log(res);
       getClubs();
