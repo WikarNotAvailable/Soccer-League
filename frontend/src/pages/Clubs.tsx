@@ -34,12 +34,12 @@ export const Clubs = () => {
       const res = await axios({
         method: "post",
         url: "http://localhost:8080/take/Clubs",
-        body: JSON.stringify(formState),
+        data: JSON.stringify(formState),
         headers: {
           Accept: "/",
           "Accept-Encoding": "gzip,deflate,br",
           Connection: "keep-alive",
-          "Content-Type": "application/json",
+          "Content-Type": "text/plain",
           "User-Agent": "*",
           "Access-Control-Allow-Origin": "*",
           "Access-Control-Allow-Methods":
