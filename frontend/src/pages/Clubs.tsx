@@ -31,16 +31,17 @@ export const Clubs = () => {
       formState.trainer !== ""
     ) {
       console.log("data", JSON.stringify(formState));
-      const res = await axios.post(
-        "http://localhost:8080/take/Clubs",
-        JSON.stringify(formState),
-        {
-          headers: {
-            Accept: "/",
-            "Content-Type": "application/json"
-          }
-        }
-      );
+      const res = await axios({
+        method: "post",
+        url: "http://localhost:8080/take/Clubs",
+        data: JSON.stringify(formState),
+        headers: {
+          Accept: "/",
+          "Content-Type": "application/json"
+        },
+        maxContentLength: 100000000,
+        maxBodyLength: 1000000000
+      });
       console.log(res);
       getClubs();
     }
