@@ -35,12 +35,18 @@ export const addPlayerReducer = (
       ...state,
       position: action.payload
     };
+  } else if (action.type === "CLUB_CHANGE") {
+    return {
+      ...state,
+      clubID: action.payload
+    };
   }
   return {
     firstName: "",
     surname: "",
     dateOfBirth: "",
     nationality: "",
-    position: ""
+    position: "",
+    clubID: null
   };
 };

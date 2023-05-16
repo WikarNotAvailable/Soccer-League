@@ -11,7 +11,8 @@ export const Players = () => {
     surname: "",
     dateOfBirth: "",
     nationality: "",
-    position: ""
+    position: "",
+    clubID: null
   });
 
   const getPlayers = async () => {
@@ -29,12 +30,13 @@ export const Players = () => {
       formState.surname !== "" &&
       formState.dateOfBirth !== "" &&
       formState.nationality !== "" &&
-      formState.position !== ""
+      formState.position !== "" &&
+      formState.clubID !== null
     ) {
       console.log("data", JSON.stringify(formState));
       const res = await axios({
         method: "post",
-        url: "http://localhost:8080/take/Players",
+        url: `http://localhost:8080/take/Players?clubID=${formState.clubID}`,
         data: JSON.stringify(formState),
         headers: {
           Accept: "/",
@@ -43,7 +45,7 @@ export const Players = () => {
           "Access-Control-Allow-Methods":
             "GET,PUT,POST,DELETE,PATCH,OPTIONS,HEAD",
           "Access-Control-Allow-Headers":
-            "origin, content-type, accept, authorization"
+            "Origin, Content-Type, Accept, Authorization"
         }
       });
       console.log(res);
@@ -66,6 +68,8 @@ export const Players = () => {
               justify="space-between"
               align="center"
               key={index}
+              bgColor="#f0f0f0"
+              borderRadius="10px"
             >
               <Text fontSize="14px" fontWeight="600">
                 {player.firstName}&nbsp;{player.surname}
@@ -116,12 +120,22 @@ export const Players = () => {
             })
           }
         />
+        <Input
+          placeholder="Club ID"
+          onChange={(e: any) =>
+            dispatchForm({
+              type: "CLUB_CHANGE",
+              payload: e.target.value
+            })
+          }
+          type="number"
+        />
         <Button
           onClick={handleAddPlayer}
           bgColor="#ff3f3f"
           _hover={{ bgColor: "#ff3f3f", opacity: "0.7" }}
         >
-          Add Club
+          Add Player
         </Button>
       </Flex>
     </Flex>

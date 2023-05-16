@@ -65,6 +65,8 @@ export const Clubs = () => {
               justify="space-between"
               align="center"
               key={index}
+              bgColor="#f0f0f0"
+              borderRadius="10px"
             >
               <Text fontSize="14px" fontWeight="600">
                 {club.name}
