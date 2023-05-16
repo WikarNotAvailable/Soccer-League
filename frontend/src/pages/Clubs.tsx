@@ -37,12 +37,12 @@ export const Clubs = () => {
         data: JSON.stringify(formState),
         headers: {
           Accept: "/",
-          "Content-Type": "application/json",
+          "Content-Type": "text/plain",
           "Access-Control-Allow-Origin": "*",
           "Access-Control-Allow-Methods":
             "GET,PUT,POST,DELETE,PATCH,OPTIONS,HEAD",
           "Access-Control-Allow-Headers":
-            "Origin, X-PINGOTHER, Content-Type, Accept, Authorization"
+            "origin, content-type, accept, authorization"
         }
       });
       console.log(res);
