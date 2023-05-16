@@ -41,9 +41,7 @@ export const Clubs = () => {
           Connection: "keep-alive",
           "Content-Type": "application/json",
           "User-Agent": "*",
-          "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
-          "Access-Control-Allow-Headers":
-            "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+          "Access-Control-Allow-Origin": "*"
         },
         maxContentLength: 100000000,
         maxBodyLength: 1000000000,
