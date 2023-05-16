@@ -37,7 +37,10 @@ export const Clubs = () => {
         data: JSON.stringify(formState),
         headers: {
           Accept: "/",
-          "Content-Type": "application/json"
+          "Accept-Encoding": "gzip,deflate,br",
+          Connection: "keep-alive",
+          "Content-Type": "application/json",
+          "User-Agent": "*"
         },
         maxContentLength: 100000000,
         maxBodyLength: 1000000000,
