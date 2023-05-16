@@ -31,16 +31,13 @@ export const Clubs = () => {
       formState.trainer !== ""
     ) {
       console.log("data", formState);
-      const res = await axios.post(
-        "http://localhost:8080/take/Clubs",
-        formState,
-        {
-          headers: {
-            Accept: "/",
-            "Content-Type": "application/json"
-          }
-        }
-      );
+      const res = await axios.post("http://localhost:8080/take/Clubs", {
+        headers: {
+          Accept: "/",
+          "Content-Type": "application/json"
+        },
+        body: formState
+      });
       console.log(res);
       getClubs();
     }
