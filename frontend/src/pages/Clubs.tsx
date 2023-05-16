@@ -30,7 +30,10 @@ export const Clubs = () => {
       formState.foundationDate !== "" &&
       formState.trainer !== ""
     ) {
-      const res = await axios.post("http://localhost:8080/take/Clubs");
+      const res = await axios.post(
+        "http://localhost:8080/take/Clubs",
+        JSON.stringify(formState)
+      );
       console.log(res);
       getClubs();
     }
