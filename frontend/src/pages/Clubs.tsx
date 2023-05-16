@@ -37,9 +37,7 @@ export const Clubs = () => {
         data: JSON.stringify(formState),
         headers: {
           Accept: "/",
-          Connection: "keep-alive",
           "Content-Type": "text/plain",
-          "User-Agent": "*",
           "Access-Control-Allow-Origin": "*",
           "Access-Control-Allow-Methods":
             "GET,PUT,POST,DELETE,PATCH,OPTIONS,HEAD",
