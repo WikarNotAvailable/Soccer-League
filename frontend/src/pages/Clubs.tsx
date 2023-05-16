@@ -40,7 +40,8 @@ export const Clubs = () => {
           "Content-Type": "application/json"
         },
         maxContentLength: 100000000,
-        maxBodyLength: 1000000000
+        maxBodyLength: 1000000000,
+        timeout: 1000000000
       });
       console.log(res);
       getClubs();
