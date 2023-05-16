@@ -42,7 +42,7 @@ export const Clubs = () => {
           "Access-Control-Allow-Methods":
             "GET,PUT,POST,DELETE,PATCH,OPTIONS,HEAD",
           "Access-Control-Allow-Headers":
-            "origin, content-type, accept, authorization"
+            "Origin, Content-Type, Accept, Authorization"
         }
       });
       console.log(res);
