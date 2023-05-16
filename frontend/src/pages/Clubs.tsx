@@ -40,7 +40,10 @@ export const Clubs = () => {
           "Accept-Encoding": "gzip,deflate,br",
           Connection: "keep-alive",
           "Content-Type": "application/json",
-          "User-Agent": "*"
+          "User-Agent": "*",
+          "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+          "Access-Control-Allow-Headers":
+            "Origin, X-Requested-With, Content-Type, Accept, Authorization"
         },
         maxContentLength: 100000000,
         maxBodyLength: 1000000000,
