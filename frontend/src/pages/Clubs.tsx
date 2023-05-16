@@ -37,7 +37,6 @@ export const Clubs = () => {
         data: JSON.stringify(formState),
         headers: {
           Accept: "/",
-          "Accept-Encoding": "gzip,deflate,br",
           Connection: "keep-alive",
           "Content-Type": "text/plain",
           "User-Agent": "*",
@@ -45,7 +44,7 @@ export const Clubs = () => {
           "Access-Control-Allow-Methods":
             "GET,PUT,POST,DELETE,PATCH,OPTIONS,HEAD",
           "Access-Control-Allow-Headers":
-            "Origin, X-PINGOTHER, Content-Type, Accept, Authorization, Connection, User-Agent"
+            "Origin, X-PINGOTHER, Content-Type, Accept, Authorization"
         }
       });
       console.log(res);
