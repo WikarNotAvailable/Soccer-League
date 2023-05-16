@@ -45,11 +45,8 @@ export const Clubs = () => {
           "Access-Control-Allow-Methods":
             "GET,PUT,POST,DELETE,PATCH,OPTIONS,HEAD",
           "Access-Control-Allow-Headers":
-            "origin, X-Requested-With, content-type, accept, authorization"
-        },
-        maxContentLength: 100000000,
-        maxBodyLength: 1000000000,
-        timeout: 1000000000
+            "Origin, X-PINGOTHER, Content-Type, Accept, Authorization, Connection, User-Agent"
+        }
       });
       console.log(res);
       getClubs();
