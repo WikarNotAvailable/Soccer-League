@@ -35,7 +35,7 @@ export const Clubs = () => {
         JSON.stringify(formState),
         {
           headers: {
-            Accept: "appliaction/json",
+            Accept: "/",
             "Content-Type": "application/json"
           }
         }
