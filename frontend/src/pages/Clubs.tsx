@@ -78,21 +78,18 @@ export const Clubs = () => {
         })}
       </Flex>
       <Flex flexDir="column" gap="8px" w="50%">
-        {formState.name}
         <Input
           placeholder="Name"
           onChange={(e: any) =>
             dispatchForm({ type: "NAME_CHANGE", payload: e.target.value })
           }
         />
-        {formState.country}
         <Input
           placeholder="Country"
           onChange={(e: any) =>
             dispatchForm({ type: "COUNTRY_CHANGE", payload: e.target.value })
           }
         />
-        {formState.foundationDate}
         <Input
           placeholder="Foundation Date"
           onChange={(e: any) =>
@@ -100,7 +97,6 @@ export const Clubs = () => {
           }
           type="date"
         />
-        {formState.trainer}
         <Input
           placeholder="Trainer"
           onChange={(e: any) =>
