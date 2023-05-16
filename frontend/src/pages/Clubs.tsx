@@ -5,7 +5,7 @@ import { addClubReducer } from "../reducers/addClubReducer";
 import { Club } from "../types/Clubs";
 
 export const Clubs = () => {
-  const [clubs, setClubs] = useState<Club[]>();
+  const [clubs, setClubs] = useState<Club[]>([]);
   const [formState, dispatchForm] = useReducer(addClubReducer, {
     name: "",
     country: "",
