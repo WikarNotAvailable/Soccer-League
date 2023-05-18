@@ -68,7 +68,7 @@ export const Matches = () => {
     <Flex justify="space-between" w="100%" gap="32px">
       <Flex flexDir="column" gap="16px" w="50%">
         <Text fontSize="24px" fontWeight="600" mb="16px">
-          Players list
+          Matches list
         </Text>
         {matches?.map((match: Match, index: number) => {
           return (
