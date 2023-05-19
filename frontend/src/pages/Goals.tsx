@@ -39,13 +39,7 @@ export const Goals = () => {
         url: `http://localhost:8080/take/Goals?playerID=${formState.playerID}&matchID=${formState.matchID}&clubID=${formState.clubID}`,
         data: JSON.stringify(data),
         headers: {
-          Accept: "/",
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Methods":
-            "GET,PUT,POST,DELETE,PATCH,OPTIONS,HEAD",
-          "Access-Control-Allow-Headers":
-            "Origin, Content-Type, Accept, Authorization"
+          "Content-Type": "application/json"
         }
       });
       console.log(res);

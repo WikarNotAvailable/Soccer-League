@@ -50,13 +50,7 @@ export const Matches = () => {
         url: `http://localhost:8080/take/Matches?homeClubID=${formState.homeClubID}&awayClubID=${formState.awayClubID}`,
         data: JSON.stringify(data),
         headers: {
-          Accept: "/",
           "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Methods":
-            "GET,PUT,POST,DELETE,PATCH,OPTIONS,HEAD",
-          "Access-Control-Allow-Headers":
-            "Origin, Content-Type, Accept, Authorization"
         }
       });
       console.log(res);
