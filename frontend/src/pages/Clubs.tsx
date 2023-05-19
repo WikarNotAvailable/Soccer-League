@@ -45,25 +45,23 @@ export const Clubs = () => {
       //       "Origin, Content-Type, Accept, Authorization"
       //   }
       // });
-      const res = await fetch("http://localhost:8080/take/Clubs/test", {
-        method: "POST", // *GET, POST, PUT, DELETE, etc.
-        mode: "cors", // no-cors, *cors, same-origin
-        cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-        credentials: "same-origin", // include, *same-origin, omit
-        headers: {
-          Accept: "/",
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Methods":
-            "GET,PUT,POST,DELETE,PATCH,OPTIONS,HEAD",
-          "Access-Control-Allow-Headers":
-            "Origin, Content-Type, Accept, Authorization"
-        },
-        redirect: "follow", // manual, *follow, error
-        referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-        body: JSON.stringify(formState) // body data type must match "Content-Type" header
-      });
-      console.log(res);
+      var myHeaders = new Headers();
+      myHeaders.append("Content-Type", "application/json");
+
+      var raw = JSON.stringify("CIPSKO");
+
+      var requestOptions = {
+        method: "POST",
+        headers: myHeaders,
+        body: raw,
+        redirect: "follow"
+      };
+
+      fetch("http://localhost:8080/take/Clubs/test", requestOptions as any)
+        .then((response) => response.text())
+        .then((result) => console.log(result))
+        .catch((error) => console.log("error", error));
+      // console.log(res);
       getClubs();
     }
   };
