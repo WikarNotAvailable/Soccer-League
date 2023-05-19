@@ -33,11 +33,13 @@ export const Players = () => {
       formState.position !== "" &&
       formState.clubID !== null
     ) {
-      console.log("data", JSON.stringify(formState));
+      const data = { ...formState };
+      delete data.clubID;
+      console.log("data", JSON.stringify(data));
       const res = await axios({
         method: "post",
         url: `http://localhost:8080/take/Players?clubID=${formState.clubID}`,
-        data: JSON.stringify(formState),
+        data: JSON.stringify(data),
         headers: {
           "Content-Type": "application/json"
         }
