@@ -34,8 +34,8 @@ export const Clubs = () => {
       console.log("data", JSON.stringify(formState));
       const res = await axios({
         method: "post",
-        url: "http://localhost:8080/take/Clubs/test",
-        data: JSON.stringify("CIPA"),
+        url: "http://localhost:8080/take/Clubs",
+        data: JSON.stringify(formState),
         headers: {
           "Content-Type": "application/json"
         }
