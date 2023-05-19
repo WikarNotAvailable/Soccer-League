@@ -15,7 +15,7 @@ export const Goals = () => {
 
   const getGoals = async () => {
     const res = await axios.get("http://localhost:8080/take/Goals");
-    setGoals(JSON.parse(res.data.goals));
+    setGoals(res.data.goals);
   };
 
   useEffect(() => {

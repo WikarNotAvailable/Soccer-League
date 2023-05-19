@@ -24,7 +24,7 @@ export const Matches = () => {
 
   const getMatches = async () => {
     const res = await axios.get("http://localhost:8080/take/Matches");
-    setMatches(JSON.parse(res.data.matches));
+    setMatches(res.data.matches);
   };
 
   useEffect(() => {
@@ -50,7 +50,7 @@ export const Matches = () => {
         url: `http://localhost:8080/take/Matches?homeClubID=${formState.homeClubID}&awayClubID=${formState.awayClubID}`,
         data: JSON.stringify(data),
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": "application/json"
         }
       });
       console.log(res);
