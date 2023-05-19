@@ -38,7 +38,7 @@ export const addPlayerReducer = (
   } else if (action.type === "CLUB_CHANGE") {
     return {
       ...state,
-      clubID: action.payload
+      clubID: +action.payload
     };
   }
   return {
