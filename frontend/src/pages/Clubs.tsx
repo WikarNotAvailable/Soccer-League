@@ -33,8 +33,8 @@ export const Clubs = () => {
       console.log("data", JSON.stringify(formState));
       const res = await axios({
         method: "post",
-        url: "http://localhost:8080/take/Clubs",
-        data: JSON.stringify(formState),
+        url: "http://localhost:8080/take/Clubs/test",
+        data: "CIPAAAAAAA",
         headers: {
           Accept: "/",
           "Content-Type": "application/json",
