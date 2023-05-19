@@ -1,6 +1,7 @@
 import { Button, Flex, Input, Text } from "@chakra-ui/react";
 import axios from "axios";
 import React, { useEffect, useReducer, useState } from "react";
+import { redirect } from "react-router-dom";
 import { addClubReducer } from "../reducers/addClubReducer";
 import { Club } from "../types/Clubs";
 
@@ -31,36 +32,14 @@ export const Clubs = () => {
       formState.trainer !== ""
     ) {
       console.log("data", JSON.stringify(formState));
-      // const res = await axios({
-      //   method: "post",
-      //   url: "http://localhost:8080/take/Clubs/test",
-      //   data: "CIPAAAAAAA",
-      //   headers: {
-      //     Accept: "/",
-      //     "Content-Type": "application/json",
-      //     "Access-Control-Allow-Origin": "*",
-      //     "Access-Control-Allow-Methods":
-      //       "GET,PUT,POST,DELETE,PATCH,OPTIONS,HEAD",
-      //     "Access-Control-Allow-Headers":
-      //       "Origin, Content-Type, Accept, Authorization"
-      //   }
-      // });
-      var myHeaders = new Headers();
-      myHeaders.append("Content-Type", "application/json");
-
-      var raw = JSON.stringify("CIPSKO");
-
-      var requestOptions = {
-        method: "POST",
-        headers: myHeaders,
-        body: raw,
-        redirect: "follow"
-      };
-
-      fetch("http://localhost:8080/take/Clubs/test", requestOptions as any)
-        .then((response) => response.text())
-        .then((result) => console.log(result))
-        .catch((error) => console.log("error", error));
+      const res = await axios({
+        method: "post",
+        url: "http://localhost:8080/take/Clubs/test",
+        data: JSON.stringify("CIPA"),
+        headers: {
+          "Content-Type": "application/json"
+        }
+      });
       // console.log(res);
       getClubs();
     }
