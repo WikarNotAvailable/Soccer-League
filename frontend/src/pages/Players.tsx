@@ -17,8 +17,7 @@ export const Players = () => {
 
   const getPlayers = async () => {
     const res = await axios.get("http://localhost:8080/take/Players");
-    //setPlayers(JSON.parse(res.data.players));
-    console.log(res.data);
+    setPlayers(res.data.players);
   };
 
   useEffect(() => {
