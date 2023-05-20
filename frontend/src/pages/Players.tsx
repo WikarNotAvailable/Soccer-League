@@ -1,11 +1,15 @@
 import { Button, Flex, Input, Text } from "@chakra-ui/react";
 import axios from "axios";
+import { Select } from "chakra-react-select";
 import React, { useEffect, useReducer, useState } from "react";
 import { addPlayerReducer } from "../reducers/addPlayerReducer";
+import { Club } from "../types/Clubs";
 import { Player } from "../types/Players";
 
 export const Players = () => {
   const [players, setPlayers] = useState<Player[]>([]);
+  const [clubs, setClubs] = useState<Club[]>([]);
+  const [options, setOptions] = useState<any>();
   const [formState, dispatchForm] = useReducer(addPlayerReducer, {
     firstName: "",
     surname: "",
@@ -20,8 +24,19 @@ export const Players = () => {
     setPlayers(res.data.players);
   };
 
+  const getClubs = async () => {
+    const res = await axios.get("http://localhost:8080/take/Clubs");
+    setClubs(res.data.clubs);
+    let arr: any[] = [];
+    clubs.forEach((club: Club) =>
+      arr.push({ label: club.name, value: club.id })
+    );
+    setOptions(arr);
+  };
+
   useEffect(() => {
     getPlayers();
+    getClubs();
   }, []);
 
   const handleAddPlayer = async () => {
@@ -116,15 +131,15 @@ export const Players = () => {
             })
           }
         />
-        <Input
-          placeholder="Club ID"
+        <Select
+          placeholder="Select club"
+          options={options}
           onChange={(e: any) =>
             dispatchForm({
               type: "CLUB_CHANGE",
-              payload: e.target.value
+              payload: e.value
             })
           }
-          type="number"
         />
         <Button
           onClick={handleAddPlayer}

@@ -1,11 +1,21 @@
 import { Button, Flex, Input, Text } from "@chakra-ui/react";
 import axios from "axios";
+import { Select } from "chakra-react-select";
 import React, { useEffect, useReducer, useState } from "react";
 import { addGoalReducer } from "../reducers/addGoalReducer";
+import { Club } from "../types/Clubs";
 import { Goal } from "../types/Goals";
+import { Match } from "../types/Matches";
+import { Player } from "../types/Players";
 
 export const Goals = () => {
   const [goals, setGoals] = useState<Goal[]>();
+  const [matches, setMatches] = useState<Match[]>([]);
+  const [clubs, setClubs] = useState<Club[]>([]);
+  const [players, setPlayers] = useState<Player[]>([]);
+  const [matchesOptions, setMatchesOptions] = useState<any>([]);
+  const [clubsOptions, setClubsOptions] = useState<any>([]);
+  const [playersOptions, setPlayersOptions] = useState<any>([]);
   const [formState, dispatchForm] = useReducer(addGoalReducer, {
     minute: null,
     playerID: null,
@@ -18,8 +28,44 @@ export const Goals = () => {
     setGoals(res.data.goals);
   };
 
+  const getMatches = async () => {
+    const res = await axios.get("http://localhost:8080/take/Matches");
+    setMatches(res.data.matches);
+    let arr: any[] = [];
+    matches.forEach((match: Match) =>
+      arr.push({ label: match.matchDate, value: match.id })
+    );
+    setClubsOptions(arr);
+  };
+
+  const getClubs = async () => {
+    const res = await axios.get("http://localhost:8080/take/Clubs");
+    setClubs(res.data.clubs);
+    let arr: any[] = [];
+    clubs.forEach((club: Club) =>
+      arr.push({ label: club.name, value: club.id })
+    );
+    setClubsOptions(arr);
+  };
+
+  const getPlayers = async () => {
+    const res = await axios.get("http://localhost:8080/take/Players");
+    setPlayers(res.data.players);
+    let arr: any[] = [];
+    players.forEach((player: Player) =>
+      arr.push({
+        label: player.firstName + " " + player.surname,
+        value: player.id
+      })
+    );
+    setPlayersOptions(arr);
+  };
+
   useEffect(() => {
     getGoals();
+    getMatches();
+    getClubs();
+    getPlayers();
   }, []);
 
   const handleAddGoal = async () => {
@@ -80,26 +126,26 @@ export const Goals = () => {
           }
           type="number"
         />
-        <Input
-          placeholder="Player ID"
+        <Select
+          placeholder="Select player"
+          options={playersOptions}
           onChange={(e: any) =>
-            dispatchForm({ type: "PLAYER_CHANGE", payload: e.target.value })
+            dispatchForm({ type: "PLAYER_CHANGE", payload: e.value })
           }
-          type="number"
         />
-        <Input
-          placeholder="Match ID"
+        <Select
+          placeholder="Select match"
+          options={matchesOptions}
           onChange={(e: any) =>
-            dispatchForm({ type: "MATCH_CHANGE", payload: e.target.value })
+            dispatchForm({ type: "MATCH_CHANGE", payload: e.value })
           }
-          type="number"
         />
-        <Input
-          placeholder="Club ID"
+        <Select
+          placeholder="Select club"
+          options={clubsOptions}
           onChange={(e: any) =>
-            dispatchForm({ type: "CLUB_CHANGE", payload: e.target.value })
+            dispatchForm({ type: "CLUB_CHANGE", payload: e.value })
           }
-          type="number"
         />
         <Button
           onClick={handleAddGoal}

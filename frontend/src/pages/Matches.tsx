@@ -1,19 +1,19 @@
 import { AddIcon, DeleteIcon } from "@chakra-ui/icons";
-import {
-  Button,
-  Flex,
-  Input,
-  InputGroup,
-  InputRightElement,
-  Text
-} from "@chakra-ui/react";
+import { Button, Flex, Input, Text } from "@chakra-ui/react";
 import axios from "axios";
+import { Select } from "chakra-react-select";
 import React, { useEffect, useReducer, useState } from "react";
 import { addMatchReducer } from "../reducers/addMatchReducer";
+import { Club } from "../types/Clubs";
 import { Match } from "../types/Matches";
+import { Player } from "../types/Players";
 
 export const Matches = () => {
   const [matches, setMatches] = useState<Match[]>([]);
+  const [clubs, setClubs] = useState<Club[]>([]);
+  const [players, setPlayers] = useState<Player[]>([]);
+  const [clubsOptions, setClubsOptions] = useState<any>([]);
+  const [playersOptions, setPlayersOptions] = useState<any>([]);
   const [formState, dispatchForm] = useReducer(addMatchReducer, {
     matchDate: "",
     score: "",
@@ -27,8 +27,33 @@ export const Matches = () => {
     setMatches(res.data.matches);
   };
 
+  const getClubs = async () => {
+    const res = await axios.get("http://localhost:8080/take/Clubs");
+    setClubs(res.data.clubs);
+    let arr: any[] = [];
+    clubs.forEach((club: Club) =>
+      arr.push({ label: club.name, value: club.id })
+    );
+    setClubsOptions(arr);
+  };
+
+  const getPlayers = async () => {
+    const res = await axios.get("http://localhost:8080/take/Players");
+    setPlayers(res.data.players);
+    let arr: any[] = [];
+    players.forEach((player: Player) =>
+      arr.push({
+        label: player.firstName + " " + player.surname,
+        value: player.id
+      })
+    );
+    setPlayersOptions(arr);
+  };
+
   useEffect(() => {
     getMatches();
+    getClubs();
+    getPlayers();
   }, []);
 
   const handleAddMatch = async () => {
@@ -100,68 +125,65 @@ export const Matches = () => {
             dispatchForm({ type: "SCORE_CHANGE", payload: e.target.value })
           }
         />
-        <Input
-          placeholder="Home club ID"
+        <Select
+          placeholder="Select home club"
+          options={clubsOptions}
           onChange={(e: any) =>
-            dispatchForm({ type: "HOMECLUB_CHANGE", payload: e.target.value })
+            dispatchForm({ type: "HOMECLUB_CHANGE", payload: e.value })
           }
-          type="number"
         />
-        <Input
-          placeholder="Away club ID"
+        <Select
+          placeholder="Select away club"
+          options={clubsOptions}
           onChange={(e: any) =>
-            dispatchForm({ type: "AWAYCLUB_CHANGE", payload: e.target.value })
+            dispatchForm({ type: "AWAYCLUB_CHANGE", payload: e.value })
           }
-          type="number"
         />
         {formState.playerIDs.map((playerID: number, index: number) => {
           return (
             <Flex gap="8px" align="center" key={index}>
-              <InputGroup>
-                <Input
-                  value={playerID}
-                  placeholder="Player ID"
+              <Flex w="100%">
+                <Select
+                  chakraStyles={{
+                    container: (provided) => ({
+                      ...provided,
+                      width: "100%"
+                    })
+                  }}
+                  placeholder="Select player"
+                  options={playersOptions}
                   onChange={(e: any) =>
                     dispatchForm({
                       type: "PLAYERS_CHANGE",
                       payload: [
                         ...formState.playerIDs.slice(0, index),
-                        +e.target.value,
+                        +e.value,
                         ...formState.playerIDs.slice(index + 1)
                       ]
                     })
                   }
-                  type="number"
                 />
-                {formState.playerIDs.length > 1 && (
-                  <InputRightElement>
-                    <DeleteIcon
-                      onClick={() => {
-                        console.log("index", index);
-                        console.log([
-                          ...formState.playerIDs.slice(0, index),
-                          ...formState.playerIDs.slice(
-                            index + 1,
-                            formState.playerIDs.length
-                          )
-                        ]);
-                        dispatchForm({
-                          type: "PLAYERS_CHANGE",
-                          payload: [
-                            ...formState.playerIDs.slice(0, index),
-                            ...formState.playerIDs.slice(
-                              index + 1,
-                              formState.playerIDs.length
-                            )
-                          ]
-                        });
-                      }}
-                    />
-                  </InputRightElement>
-                )}
-              </InputGroup>
+              </Flex>
+              {formState.playerIDs.length > 1 && (
+                <DeleteIcon
+                  cursor="pointer"
+                  onClick={() => {
+                    dispatchForm({
+                      type: "PLAYERS_CHANGE",
+                      payload: [
+                        ...formState.playerIDs.slice(0, index),
+                        ...formState.playerIDs.slice(
+                          index + 1,
+                          formState.playerIDs.length
+                        )
+                      ]
+                    });
+                  }}
+                />
+              )}
               {index === formState.playerIDs.length - 1 && (
                 <AddIcon
+                  cursor="pointer"
                   onClick={() =>
                     dispatchForm({
                       type: "PLAYERS_CHANGE",
