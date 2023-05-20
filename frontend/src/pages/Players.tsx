@@ -28,10 +28,11 @@ export const Players = () => {
     const res = await axios.get("http://localhost:8080/take/Clubs");
     setClubs(res.data.clubs);
     let arr: any[] = [];
-    clubs.forEach((club: Club) =>
+    res.data.clubs.forEach((club: Club) =>
       arr.push({ label: club.name, value: club.id })
     );
     console.log(arr);
+    console.log(res.data.clubs);
     setOptions(arr);
   };
 
