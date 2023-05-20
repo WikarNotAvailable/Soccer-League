@@ -31,8 +31,6 @@ export const Players = () => {
     res.data.clubs.forEach((club: Club) =>
       arr.push({ label: club.name, value: club.id })
     );
-    console.log(arr);
-    console.log(res.data.clubs);
     setOptions(arr);
   };
 

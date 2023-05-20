@@ -31,7 +31,7 @@ export const Matches = () => {
     const res = await axios.get("http://localhost:8080/take/Clubs");
     setClubs(res.data.clubs);
     let arr: any[] = [];
-    clubs.forEach((club: Club) =>
+    res.data.clubs.forEach((club: Club) =>
       arr.push({ label: club.name, value: club.id })
     );
     setClubsOptions(arr);
@@ -41,7 +41,7 @@ export const Matches = () => {
     const res = await axios.get("http://localhost:8080/take/Players");
     setPlayers(res.data.players);
     let arr: any[] = [];
-    players.forEach((player: Player) =>
+    res.data.players.forEach((player: Player) =>
       arr.push({
         label: player.firstName + " " + player.surname,
         value: player.id

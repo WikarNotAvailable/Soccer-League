@@ -32,7 +32,7 @@ export const Goals = () => {
     const res = await axios.get("http://localhost:8080/take/Matches");
     setMatches(res.data.matches);
     let arr: any[] = [];
-    matches.forEach((match: Match) =>
+    res.data.matches.forEach((match: Match) =>
       arr.push({ label: match.matchDate, value: match.id })
     );
     setClubsOptions(arr);
@@ -42,7 +42,7 @@ export const Goals = () => {
     const res = await axios.get("http://localhost:8080/take/Clubs");
     setClubs(res.data.clubs);
     let arr: any[] = [];
-    clubs.forEach((club: Club) =>
+    res.data.clubs.forEach((club: Club) =>
       arr.push({ label: club.name, value: club.id })
     );
     setClubsOptions(arr);
@@ -52,7 +52,7 @@ export const Goals = () => {
     const res = await axios.get("http://localhost:8080/take/Players");
     setPlayers(res.data.players);
     let arr: any[] = [];
-    players.forEach((player: Player) =>
+    res.data.players.forEach((player: Player) =>
       arr.push({
         label: player.firstName + " " + player.surname,
         value: player.id
