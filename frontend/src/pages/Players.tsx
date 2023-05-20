@@ -31,6 +31,7 @@ export const Players = () => {
     clubs.forEach((club: Club) =>
       arr.push({ label: club.name, value: club.id })
     );
+    console.log(arr);
     setOptions(arr);
   };
 
