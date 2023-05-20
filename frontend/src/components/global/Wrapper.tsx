@@ -7,28 +7,48 @@ import { Matches } from "../../pages/Matches";
 import { Goals } from "../../pages/Goals";
 import { Navbar } from "./navbar/Navbar";
 import { Error } from "../../pages/Error";
+import { ClubDetails } from "../../pages/ClubDetails";
+import { PlayerDetails } from "../../pages/PlayerDetails";
+import { MatchDetails } from "../../pages/MatchDetails";
+import { GoalDetails } from "../../pages/GoalDetails";
 
 export const Wrapper = () => {
   const pages = [
     {
       path: "/",
-      element: <Home />
+      element: <Clubs />
     },
     {
       path: "/clubs",
       element: <Clubs />
     },
     {
+      path: "/clubs/:id",
+      element: <ClubDetails />
+    },
+    {
       path: "/players",
       element: <Players />
+    },
+    {
+      path: "/players/:id",
+      element: <PlayerDetails />
     },
     {
       path: "/matches",
       element: <Matches />
     },
     {
+      path: "/matches/:id",
+      element: <MatchDetails />
+    },
+    {
       path: "/goals",
       element: <Goals />
+    },
+    {
+      path: "/goals/:id",
+      element: <GoalDetails />
     }
   ].map((element, index) => ({ ...element, id: `${element.path}_${index}` }));
 

@@ -1,4 +1,4 @@
-import { Button, Flex, Input, Text } from "@chakra-ui/react";
+import { Button, Flex, Input, Link, Text } from "@chakra-ui/react";
 import axios from "axios";
 import { Select } from "chakra-react-select";
 import React, { useEffect, useReducer, useState } from "react";
@@ -101,20 +101,23 @@ export const Goals = () => {
         </Text>
         {goals?.map((goal: Goal, index: number) => {
           return (
-            <Flex
+            <Link
+              href={`/goals/${goal.id}`}
               p="8px"
               gap="8px"
               w="100%"
-              justify="space-between"
-              align="center"
+              justifyContent="space-between"
+              alignItems="center"
               key={index}
               bgColor="#f0f0f0"
               borderRadius="10px"
+              display="flex"
+              _hover={{ textDecoration: "none" }}
             >
               <Text fontSize="14px" fontWeight="600">
                 {goal.minute}
               </Text>
-            </Flex>
+            </Link>
           );
         })}
       </Flex>

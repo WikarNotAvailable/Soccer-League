@@ -1,7 +1,6 @@
-import { Button, Flex, Input, Text } from "@chakra-ui/react";
+import { Button, Flex, Input, Link, Text } from "@chakra-ui/react";
 import axios from "axios";
 import React, { useEffect, useReducer, useState } from "react";
-import { redirect } from "react-router-dom";
 import { addClubReducer } from "../reducers/addClubReducer";
 import { Club } from "../types/Clubs";
 
@@ -13,6 +12,10 @@ export const Clubs = () => {
     foundationDate: "",
     trainer: ""
   });
+
+  // const clubsTest = [
+  //   { name: "Klub 1", id: 1, foundationDate: "2023-05-04", country: "Poland" }
+  // ];
 
   const getClubs = async () => {
     const res = await axios.get("http://localhost:8080/take/Clubs");
@@ -40,7 +43,6 @@ export const Clubs = () => {
           "Content-Type": "application/json"
         }
       });
-      // console.log(res);
       getClubs();
     }
   };
@@ -51,17 +53,20 @@ export const Clubs = () => {
         <Text fontSize="24px" fontWeight="600" mb="16px">
           Clubs list
         </Text>
-        {clubs?.map((club: Club, index: number) => {
+        {clubs?.map((club: any, index: number) => {
           return (
-            <Flex
-              p="8px"
+            <Link
+              href={`/clubs/${club.id}`}
+              padding="12px"
               gap="8px"
               w="100%"
-              justify="space-between"
-              align="center"
+              justifyContent="space-between"
+              alignItems="center"
               key={index}
               bgColor="#f0f0f0"
               borderRadius="10px"
+              _hover={{ textDecoration: "none" }}
+              display="flex"
             >
               <Text fontSize="14px" fontWeight="600">
                 {club.name}
@@ -70,7 +75,7 @@ export const Clubs = () => {
                 <Text>{club.foundationDate}</Text>
                 <Text>{club.country}</Text>
               </Flex>
-            </Flex>
+            </Link>
           );
         })}
       </Flex>

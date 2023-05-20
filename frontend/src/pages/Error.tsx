@@ -7,8 +7,8 @@ export const Error = () => {
 
   return (
     <Flex
-      width="100vw"
-      height="100vh"
+      h="60vh"
+      w="90vw"
       justify="center"
       align="center"
       gap="8px"

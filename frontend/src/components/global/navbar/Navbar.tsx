@@ -14,8 +14,7 @@ export const Navbar = () => {
       gap="16px"
       bgColor="#f0f0f0"
     >
-      <Link to="/">Home</Link>
-      <Link to="/clubs">Clubs</Link>
+      <Link to="/">Clubs</Link>
       <Link to="/players">Players</Link>
       <Link to="/matches">Matches</Link>
       <Link to="/goals">Goals</Link>
