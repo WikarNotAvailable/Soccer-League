@@ -78,21 +78,21 @@ export const ClubDetails = () => {
       <Flex flexDir="column" gap="8px" w="50%">
         <Input
           placeholder="Name"
-          value={club?.name}
+          value={formState?.name}
           onChange={(e: any) =>
             dispatchForm({ type: "NAME_CHANGE", payload: e.target.value })
           }
         />
         <Input
           placeholder="Country"
-          value={club?.country}
+          value={formState?.country}
           onChange={(e: any) =>
             dispatchForm({ type: "COUNTRY_CHANGE", payload: e.target.value })
           }
         />
         <Input
           placeholder="Foundation Date"
-          value={club?.foundationDate}
+          value={formState?.foundationDate}
           onChange={(e: any) =>
             dispatchForm({ type: "DATE_CHANGE", payload: e.target.value })
           }
@@ -100,7 +100,7 @@ export const ClubDetails = () => {
         />
         <Input
           placeholder="Trainer"
-          value={club?.trainer}
+          value={formState?.trainer}
           onChange={(e: any) =>
             dispatchForm({ type: "TRAINER_CHANGE", payload: e.target.value })
           }
