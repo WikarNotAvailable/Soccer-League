@@ -34,7 +34,7 @@ export const MatchDetails = () => {
     const homeClub = await getClub(res.data.homeClubID);
     setHomeClub(homeClub);
     const awayClub = await getClub(res.data.awayClubID);
-    setHomeClub(awayClub);
+    setAwayClub(awayClub);
     dispatchForm({ type: "DATE_CHANGE", payload: res.data.matchDate });
     dispatchForm({ type: "SCORE_CHANGE", payload: res.data.score });
     dispatchForm({ type: "PLAYER_CHANGE", payload: res.data.playerIDs });
