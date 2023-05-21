@@ -132,7 +132,7 @@ export const MatchDetails = () => {
           </Text>
           <Text fontWeight="700">
             Players:&nbsp;
-            {match?.mPlayers.map((player: Player) => (
+            {match?.mplayers.map((player: Player) => (
               <Text fontWeight="400">
                 {player?.firstName}&nbsp;{player?.surname}
               </Text>
