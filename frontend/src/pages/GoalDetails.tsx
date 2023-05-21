@@ -51,7 +51,7 @@ export const GoalDetails = () => {
     res.data.matches.forEach((match: Match) =>
       arr.push({ label: match.matchDate, value: match.id })
     );
-    setClubsOptions(arr);
+    setMatchesOptions(arr);
   };
 
   const getClubs = async () => {
