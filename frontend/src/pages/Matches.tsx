@@ -69,7 +69,6 @@ export const Matches = () => {
       const data = { ...formState };
       delete data.homeClubID;
       delete data.awayClubID;
-      console.log("data", JSON.stringify(data));
       const res = await axios({
         method: "post",
         url: `http://localhost:8080/take/Matches?homeClubID=${formState.homeClubID}&awayClubID=${formState.awayClubID}`,

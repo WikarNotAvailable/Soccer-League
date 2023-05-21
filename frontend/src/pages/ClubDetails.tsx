@@ -42,6 +42,7 @@ export const ClubDetails = () => {
         "Content-Type": "application/json"
       }
     });
+    getClub();
   };
 
   const handleDeleteClub = async () => {
@@ -57,7 +58,7 @@ export const ClubDetails = () => {
     <Flex justify="space-between" w="100%" gap="32px">
       <Flex flexDir="column" gap="16px" w="50%">
         <Text fontSize="24px" fontWeight="600" mb="16px">
-          Clubs details
+          Club details
         </Text>
         <Flex flexDir="column" gap="8px">
           <Text fontWeight="700">
