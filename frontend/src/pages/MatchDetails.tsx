@@ -143,6 +143,7 @@ export const MatchDetails = () => {
       <Flex flexDir="column" gap="8px" w="50%">
         <Input
           placeholder="Match date"
+          value={formState?.matchDate}
           onChange={(e: any) =>
             dispatchForm({ type: "DATE_CHANGE", payload: e.target.value })
           }
@@ -150,12 +151,14 @@ export const MatchDetails = () => {
         />
         <Input
           placeholder="Score"
+          value={formState?.score}
           onChange={(e: any) =>
             dispatchForm({ type: "SCORE_CHANGE", payload: e.target.value })
           }
         />
         <Select
           placeholder="Select home club"
+          value={formState?.homeClubID}
           options={clubsOptions}
           onChange={(e: any) =>
             dispatchForm({ type: "HOMECLUB_CHANGE", payload: e.value })
@@ -163,6 +166,7 @@ export const MatchDetails = () => {
         />
         <Select
           placeholder="Select away club"
+          value={formState?.awayClubID}
           options={clubsOptions}
           onChange={(e: any) =>
             dispatchForm({ type: "AWAYCLUB_CHANGE", payload: e.value })
@@ -180,6 +184,7 @@ export const MatchDetails = () => {
                     })
                   }}
                   placeholder="Select player"
+                  value={playerID}
                   options={playersOptions}
                   onChange={(e: any) =>
                     dispatchForm({
