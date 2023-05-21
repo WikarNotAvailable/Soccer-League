@@ -10,6 +10,8 @@ import { Player } from "../types/Players";
 
 export const MatchDetails = () => {
   const [match, setMatch] = useState<any>();
+  const [homeClub, setHomeClub] = useState<Club>();
+  const [awayClub, setAwayClub] = useState<Club>();
   const [clubs, setClubs] = useState<Club[]>([]);
   const [players, setPlayers] = useState<Player[]>([]);
   const [clubsOptions, setClubsOptions] = useState<any>([]);
@@ -29,6 +31,10 @@ export const MatchDetails = () => {
       `http://localhost:8080/take/Matches/${params.id}`
     );
     setMatch(res.data);
+    const homeClub = await getClub(res.data.homeClubID);
+    setHomeClub(homeClub);
+    const awayClub = await getClub(res.data.awayClubID);
+    setHomeClub(awayClub);
     dispatchForm({ type: "DATE_CHANGE", payload: res.data.matchDate });
     dispatchForm({ type: "SCORE_CHANGE", payload: res.data.score });
     dispatchForm({ type: "PLAYER_CHANGE", payload: res.data.playerIDs });
@@ -57,6 +63,12 @@ export const MatchDetails = () => {
       })
     );
     setPlayersOptions(arr);
+  };
+
+  const getClub = async (id: number) => {
+    const res = await axios.get(`http://localhost:8080/take/Clubs/${id}`);
+    console.log(res.data);
+    return res.data;
   };
 
   useEffect(() => {
@@ -111,6 +123,12 @@ export const MatchDetails = () => {
           </Text>
           <Text fontWeight="700">
             Score:&nbsp;<Text fontWeight="400">{match?.score}</Text>
+          </Text>
+          <Text fontWeight="700">
+            Home club:&nbsp;<Text fontWeight="400">{homeClub?.name}</Text>
+          </Text>
+          <Text fontWeight="700">
+            Away club:&nbsp;<Text fontWeight="400">{awayClub?.name}</Text>
           </Text>
           <Text fontWeight="700">
             Players:&nbsp;

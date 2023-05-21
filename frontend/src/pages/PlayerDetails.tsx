@@ -8,6 +8,7 @@ import { Club } from "../types/Clubs";
 
 export const PlayerDetails = () => {
   const [player, setPlayer] = useState<any>();
+  const [club, setClub] = useState<Club>();
   const [clubs, setClubs] = useState<Club[]>([]);
   const params = useParams();
   const navigate = useNavigate();
@@ -26,6 +27,7 @@ export const PlayerDetails = () => {
       `http://localhost:8080/take/Players/${params.id}`
     );
     setPlayer(res.data);
+    getClub(res.data.clubID);
     dispatchForm({ type: "FIRSTNAME_CHANGE", payload: res.data.firstName });
     dispatchForm({ type: "SURNAME_CHANGE", payload: res.data.surname });
     dispatchForm({ type: "DATE_CHANGE", payload: res.data.dateOfBirth });
@@ -42,6 +44,12 @@ export const PlayerDetails = () => {
       arr.push({ label: club.name, value: club.id })
     );
     setOptions(arr);
+  };
+
+  const getClub = async (id: number) => {
+    const res = await axios.get(`http://localhost:8080/take/Clubs/${id}`);
+    console.log(res.data);
+    setClub(res.data);
   };
 
   useEffect(() => {
@@ -106,6 +114,10 @@ export const PlayerDetails = () => {
           <Text fontWeight="700">
             Position:&nbsp;
             <Text fontWeight="400">{player?.position}</Text>
+          </Text>
+          <Text fontWeight="700">
+            Club:&nbsp;
+            <Text fontWeight="400">{club?.name}</Text>
           </Text>
         </Flex>
       </Flex>

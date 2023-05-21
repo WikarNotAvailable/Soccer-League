@@ -11,6 +11,9 @@ import { Player } from "../types/Players";
 
 export const GoalDetails = () => {
   const [goal, setGoal] = useState<Goal>();
+  const [match, setMatch] = useState<Match>();
+  const [club, setClub] = useState<Club>();
+  const [player, setPlayer] = useState<Player>();
   const [matches, setMatches] = useState<Match[]>([]);
   const [clubs, setClubs] = useState<Club[]>([]);
   const [players, setPlayers] = useState<Player[]>([]);
@@ -31,6 +34,9 @@ export const GoalDetails = () => {
       `http://localhost:8080/take/Goals/${params.id}"`
     );
     setGoal(res.data);
+    getPlayer(res.data.playerID);
+    getMatch(res.data.matchID);
+    getClub(res.data.clubID);
     dispatchForm({ type: "MINUTE_CHANGE", payload: res.data.minute });
     dispatchForm({ type: "PLAYER_CHANGE", payload: res.data.playerID });
     dispatchForm({ type: "CLUB_CHANGE", payload: res.data.clubID });
@@ -68,6 +74,21 @@ export const GoalDetails = () => {
       })
     );
     setPlayersOptions(arr);
+  };
+
+  const getPlayer = async (id: number) => {
+    const res = await axios.get(`http://localhost:8080/take/Players/${id}`);
+    setPlayer(res.data);
+  };
+
+  const getMatch = async (id: number) => {
+    const res = await axios.get(`http://localhost:8080/take/Matches/${id}`);
+    setMatch(res.data);
+  };
+
+  const getClub = async (id: number) => {
+    const res = await axios.get(`http://localhost:8080/take/Clubs/${id}`);
+    setClub(res.data);
   };
 
   useEffect(() => {
@@ -121,6 +142,20 @@ export const GoalDetails = () => {
           <Text fontWeight="700">
             Minute of the goal:&nbsp;
             <Text fontWeight="400">{goal?.minute}</Text>
+          </Text>
+          <Text fontWeight="700">
+            Player:&nbsp;
+            <Text fontWeight="400">
+              {player?.firstName}&nbsp;{player?.surname}
+            </Text>
+          </Text>
+          <Text fontWeight="700">
+            Club:&nbsp;
+            <Text fontWeight="400">{club?.name}</Text>
+          </Text>
+          <Text fontWeight="700">
+            Match date:&nbsp;
+            <Text fontWeight="400">{match?.matchDate}</Text>
           </Text>
         </Flex>
       </Flex>
