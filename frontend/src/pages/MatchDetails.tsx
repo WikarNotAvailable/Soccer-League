@@ -92,7 +92,7 @@ export const MatchDetails = () => {
       delete data.awayClubID;
       const res = await axios({
         method: "put",
-        url: `http://localhost:8080/take/Players?homeClubID=${formState.clubID}&awayClubID=${formState.awayClubID}`,
+        url: `http://localhost:8080/take/Players?homeClubID=${formState.homeClubID}&awayClubID=${formState.awayClubID}`,
         data: JSON.stringify(data),
         headers: {
           "Content-Type": "application/json"
