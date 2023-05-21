@@ -168,7 +168,7 @@ export const MatchDetails = () => {
             dispatchForm({ type: "AWAYCLUB_CHANGE", payload: e.value })
           }
         />
-        {formState.playerIDs.map((playerID: number, index: number) => {
+        {formState?.playerIDs.map((playerID: number, index: number) => {
           return (
             <Flex gap="8px" align="center" key={index}>
               <Flex w="100%">
@@ -193,7 +193,7 @@ export const MatchDetails = () => {
                   }
                 />
               </Flex>
-              {formState.playerIDs.length > 1 && (
+              {formState?.playerIDs.length > 1 && (
                 <DeleteIcon
                   cursor="pointer"
                   onClick={() => {
@@ -210,7 +210,7 @@ export const MatchDetails = () => {
                   }}
                 />
               )}
-              {index === formState.playerIDs.length - 1 && (
+              {index === formState?.playerIDs.length - 1 && (
                 <AddIcon
                   cursor="pointer"
                   onClick={() =>

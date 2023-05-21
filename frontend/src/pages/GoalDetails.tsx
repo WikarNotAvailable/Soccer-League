@@ -31,7 +31,7 @@ export const GoalDetails = () => {
 
   const getGoal = async () => {
     const res = await axios.get(
-      `http://localhost:8080/take/Goals/${params.id}"`
+      `http://localhost:8080/take/Goals/${params.id}`
     );
     setGoal(res.data);
     getPlayer(res.data.playerID);
