@@ -3,6 +3,7 @@ import axios from "axios";
 import { Select } from "chakra-react-select";
 import React, { useEffect, useReducer, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { addGoalReducer } from "../reducers/addGoalReducer";
 import { addMatchReducer } from "../reducers/addMatchReducer";
 import { Club } from "../types/Clubs";
 import { Goal } from "../types/Goals";
@@ -22,7 +23,7 @@ export const GoalDetails = () => {
   const [playersOptions, setPlayersOptions] = useState<any>([]);
   const params = useParams();
   const navigate = useNavigate();
-  const [formState, dispatchForm] = useReducer(addMatchReducer, {
+  const [formState, dispatchForm] = useReducer(addGoalReducer, {
     minute: goal?.minute ?? null,
     playerID: goal?.playerID ?? null,
     matchID: goal?.matchID ?? null,
