@@ -87,7 +87,7 @@ export const MatchDetails = () => {
         return id === null;
       }) === undefined
     ) {
-      const data = { ...formState, id: params.id };
+      const data = { ...formState, id: +params.id };
       delete data.homeClubID;
       delete data.awayClubID;
       const res = await axios({
